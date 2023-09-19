@@ -18,6 +18,8 @@ import { koaBody } from 'koa-body';
 import cors from '@koa/cors';
 import mongodbConnect from './config/mongo_conf';
 import session from 'koa-session';
+import errorHandler from './src/util/error_handler';
+import { healthChcekRouter } from './src/routes';
 
 const app = new Koa();
 
@@ -28,6 +30,9 @@ app.use(cors({
 
 app.use(session(app));
 app.use(koaBody());
+app.use(errorHandler);
+
+app.use(healthChcekRouter.routes()).use(healthChcekRouter.prefix('/health-check').allowedMethods());
 
 app.on('error', (err: any, ctx: Context) => {
   console.log(ctx.request.path);
