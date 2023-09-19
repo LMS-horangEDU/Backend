@@ -13,3 +13,5 @@ export default async function run () {
     }
   }
 }
+
+export const db = client.db('horang');

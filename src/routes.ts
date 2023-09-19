@@ -1,11 +1,8 @@
 import Router from '@koa/router';
-import { Context, Next } from 'koa';
+import { attendanceInformation, studentInformation } from './controller';
 
 const router = new Router();
 
-export const healthChcekRouter = router
-  .get('서버 연결상태 확인', '/', async (ctx: Context, next: Next) => {
-    ctx.status = 200;
-    ctx.response.body = 'Ok.';
-    await next();
-  });
+export const infoRouter = router
+  .get('학생 정보 가져오기', '/student', studentInformation)
+  .get('학생 출석 정보 가져오기', '/attendance', attendanceInformation);
