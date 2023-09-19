@@ -1,0 +1,47 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/app.js",
+  "scripts": {
+    "lint:check": "eslint src/**/*.ts",
+    "start": "tsc --build && NODE_ENV=production node dist/app.js",
+    "dev": "NODE_ENV=development nodemon -e ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LMS-horangEDU/Backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LMS-horangEDU/Backend/issues"
+  },
+  "homepage": "https://github.com/LMS-horangEDU/Backend#readme",
+  "dependencies": {
+    "@koa/cors": "^4.0.0",
+    "@koa/router": "^12.0.0",
+    "dotenv": "^16.3.1",
+    "koa": "^2.14.2",
+    "koa-body": "^6.0.1",
+    "koa-session": "^6.4.0",
+    "mongodb": "^6.1.0",
+    "ts-node": "^10.9.1"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.13.9",
+    "@types/koa__cors": "^4.0.1",
+    "@types/koa-session": "^6.4.2",
+    "@types/node": "^20.6.2",
+    "@typescript-eslint/eslint-plugin": "^6.7.2",
+    "@typescript-eslint/parser": "^6.7.2",
+    "eslint": "^8.49.0",
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "nodemon": "^3.0.1",
+    "typescript": "^5.2.2"
+  },
+  "type": "commonjs"
+}
