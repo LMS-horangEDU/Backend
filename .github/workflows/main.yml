@@ -20,7 +20,7 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -t lms-horang-backend:latest .
+          docker build -t horang-registry.kr.ncr.ntruss.com/lms-horang-backend:latest .
 
       - name: Login to Docker Hub
         env:
