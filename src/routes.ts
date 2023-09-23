@@ -1,5 +1,5 @@
 import Router from '@koa/router';
-import { attendanceInformation, createMock, mainPageInfo, studentInformation } from './controller';
+import { attendanceInformation, mainPageInfo, studentInformation } from './controller';
 
 const router = new Router();
 
