@@ -1,5 +1,6 @@
 import { Context, Next } from 'koa';
 import {
+  getAllMbtiInfo,
   getAttendance, getBadgeInfo,
   getMagnitude,
   getMbtiInfo,
@@ -80,6 +81,24 @@ export async function rankingPageInfo(ctx: Context, next:Next) {
   ctx.status = 200;
   ctx.response.body = {
     rank: rankData,
+  };
+  await next();
+}
+
+export async function mbtiPageInfo(ctx: Context, next:Next) {
+  const studentInfoData = await getStudentInfo();
+  const mbtiData = await getMbtiInfo(studentInfoData.mbti.type_id);
+  const allMbtiData = await getAllMbtiInfo();
+
+  ctx.status = 200;
+  ctx.response.body = {
+    myMbti: {
+      type: mbtiData.type,
+      typeName: mbtiData.title,
+      desc: mbtiData.desc,
+      job: mbtiData.job,
+    },
+    allMbti: allMbtiData,
   };
   await next();
 }

@@ -20,6 +20,10 @@ export async function getMbtiInfo (mbti_id: string) {
   return await db.collection('mbti').findOne({ _id : new ObjectId(mbti_id) });
 }
 
+export async function getAllMbtiInfo () {
+  return await db.collection('mbti').find({}).toArray();
+}
+
 export async function getTotalVideoCount () {
   return await db.collection('video').countDocuments();
 }

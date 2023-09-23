@@ -3,7 +3,7 @@ import {
   attendanceInformation,
   badgePageInfo,
   magnitudePageInfo,
-  mainPageInfo, rankingPageInfo,
+  mainPageInfo, mbtiPageInfo, rankingPageInfo,
   studentInformation
 } from './controller';
 
@@ -15,5 +15,6 @@ export const infoRouter = router
   .get('메인 페이지 데이터 불러오기', '/main', mainPageInfo)
   .get('나의 학습 현황', '/magnitude', magnitudePageInfo)
   .get('뱃지 데이터 불러오기', '/badge', badgePageInfo)
-  .get('랭킹 데이터 불러오기', '/rank', rankingPageInfo);
+  .get('랭킹 데이터 불러오기', '/rank', rankingPageInfo)
+  .get('mbti 데이터 불러오기', '/mbti', mbtiPageInfo);
   // .get('목데이터 입력', '/test', createMock);
