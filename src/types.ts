@@ -73,6 +73,5 @@ export interface RankInfoData {
   grade: number,
   class: number,
   score: number,
-
 }
 

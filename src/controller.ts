@@ -97,6 +97,7 @@ export async function mbtiPageInfo(ctx: Context, next:Next) {
       typeName: mbtiData.title,
       desc: mbtiData.desc,
       job: mbtiData.job,
+      point: studentInfoData.mbti,
     },
     allMbti: allMbtiData,
   };
