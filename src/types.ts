@@ -61,3 +61,18 @@ export interface MagnitudeInfoData {
     progress: Array<string>, // 수강중인 강의 리스트
   }
 }
+
+export interface BadgeInfoData {
+  badge: string, // 뱃지 이름
+  desc: string, // 뱃지 설명
+  isHas: boolean, // 뱃지 보유 여부
+}
+
+export interface RankInfoData {
+  school: string,
+  grade: number,
+  class: number,
+  score: number,
+
+}
+

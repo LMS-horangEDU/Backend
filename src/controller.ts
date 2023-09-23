@@ -1,14 +1,13 @@
 import { Context, Next } from 'koa';
 import {
-  getAttendance,
+  getAttendance, getBadgeInfo,
   getMagnitude,
   getMbtiInfo,
-  getQuizData,
+  getQuizData, getRankInfo,
   getStudentInfo,
   getTotalVideoCount, getVideoData,
-  insertData
 } from './repository';
-import { MagnitudeInfoData, MainPageInfoData } from './types';
+import { BadgeInfoData, MagnitudeInfoData, MainPageInfoData } from './types';
 
 export async function studentInformation(ctx:Context, next: Next) {
   const studentInfo = await getStudentInfo();
@@ -49,6 +48,7 @@ export async function mainPageInfo(ctx:Context, next: Next) {
     },
     mbtiPoint: studentInfoData.mbti,
     mbtiTitle: mbtiData.title,
+    badgeCount: studentInfoData.badge.length,
   } as MainPageInfoData
   await next();
 }
@@ -60,6 +60,26 @@ export async function magnitudePageInfo(ctx: Context, next:Next) {
   ctx.response.body = {
     quiz: magnitudeData.quiz,
     video: magnitudeData.video,
+  };
+  await next();
+}
+
+export async function badgePageInfo(ctx: Context, next:Next) {
+  const badgeData = await getBadgeInfo();
+
+  ctx.status = 200;
+  ctx.response.body = {
+    badge: badgeData,
+  };
+  await next();
+}
+
+export async function rankingPageInfo(ctx: Context, next:Next) {
+  const rankData = await getRankInfo();
+
+  ctx.status = 200;
+  ctx.response.body = {
+    rank: rankData,
   };
   await next();
 }

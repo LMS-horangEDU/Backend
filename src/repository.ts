@@ -1,5 +1,6 @@
 import { db } from '../config/mongo_conf';
 import { ObjectId } from 'bson';
+import { BadgeInfoData, RankInfoData } from './types';
 
 const { USER_ID } = process.env;
 
@@ -31,10 +32,28 @@ export async function getVideoData (video_id: string) {
   return await db.collection('video').findOne({ _id : new ObjectId(video_id) });
 }
 
-export async function insertData () {
-  // const data = await db.collection('quiz').find();
-  // await data.forEach((doc) => {
-  //   console.log(doc._id.toString());
-  // })
+export async function getBadgeInfo() {
+  const allBadge = await db.collection('badge').find().toArray();
+  const userInfo = await getStudentInfo();
+  const hasBadgeList = userInfo.badge;
+
+  return allBadge.map((badge) => {
+    return {
+      badge: badge.badge,
+      desc: badge.desc,
+      isHas: hasBadgeList.includes(badge._id.toString()),
+    } as BadgeInfoData;
+  })
 }
+
+export async function getRankInfo() {
+  return db.collection('rank').find().toArray();
+}
+
+// export async function insertData () {
+//   for (const doc of data) {
+//     await db.collection('badge').insertOne(doc)
+//   }
+//
+// }
 
