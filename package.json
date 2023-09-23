@@ -5,7 +5,7 @@
   "main": "dist/app.js",
   "scripts": {
     "lint:check": "eslint src/**/*.ts",
-    "start": "tsc --build && NODE_ENV=production node dist/app.js",
+    "start": "tsc --build && node dist/app.js",
     "dev": "NODE_ENV=development nodemon -e ts"
   },
   "repository": {
