@@ -41,7 +41,7 @@ app.on('error', (err: any, ctx: Context) => {
   console.error(err);
 });
 
-app.listen(process.env.PORT, async () => {
+app.listen(9000, async () => {
   // mongoDB connection.
   await mongodbConnect();
   console.log(`Server is running on port ${process.env.PORT}`);

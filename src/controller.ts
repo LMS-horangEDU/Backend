@@ -8,7 +8,7 @@ import {
   getTotalVideoCount, getVideoData,
   insertData
 } from './repository';
-import { MainPageInfoData } from './types';
+import { MagnitudeInfoData, MainPageInfoData } from './types';
 
 export async function studentInformation(ctx:Context, next: Next) {
   const studentInfo = await getStudentInfo();
@@ -50,6 +50,17 @@ export async function mainPageInfo(ctx:Context, next: Next) {
     mbtiPoint: studentInfoData.mbti,
     mbtiTitle: mbtiData.title,
   } as MainPageInfoData
+  await next();
+}
+
+export async function magnitudePageInfo(ctx: Context, next:Next) {
+  const magnitudeData = await getMagnitude();
+
+  ctx.status = 200;
+  ctx.response.body = {
+    quiz: magnitudeData.quiz,
+    video: magnitudeData.video,
+  };
   await next();
 }
 

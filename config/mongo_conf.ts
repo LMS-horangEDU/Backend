@@ -8,13 +8,15 @@ const {
   MONGO_INTERNALIP,
 } = process.env;
 
-const client = new MongoClient(NODE_ENV === 'development'
-  ? MONGODB_URI:
-  `mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@${MONGO_INTERNALIP}`
-);
+// const MONGO_CONFIG = NODE_ENV === 'development'
+//   ? MONGODB_URI:
+//   `mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@${MONGO_INTERNALIP}`;
+
+const client = new MongoClient(`mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@${MONGO_INTERNALIP}`);
 
 export default async function run () {
   try {
+    console.log('trying to connect uri : ' + `mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@${MONGO_INTERNALIP}`);
     await client.connect();
     console.log('Connected correctly MongoDB to server');
   } catch (err) {
