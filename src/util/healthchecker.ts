@@ -9,3 +9,4 @@ export const healthChcekRouter = router
     ctx.response.body = 'Ok.';
     await next();
   });
+

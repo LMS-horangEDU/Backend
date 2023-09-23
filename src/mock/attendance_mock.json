@@ -1,0 +1,35 @@
+{
+  "student_id" : "6509ae38d1d514fc1e19c2e2",
+  "attendance" : [
+    {
+      "isAttendance" : true,
+      "completeClass": 3030,
+      "date" : "2023-09-12"
+    },
+    {
+      "isAttendance" : true,
+      "completeClass": 2344,
+      "date" : "2023-09-13"
+    },
+    {
+      "isAttendance" : true,
+      "completeClass": 0,
+      "date" : "2023-09-14"
+    },
+    {
+      "isAttendance" : false,
+      "completeClass": 0,
+      "date" : "2023-09-15"
+    },
+    {
+      "isAttendance" : true,
+      "completeClass": 3430,
+      "date" : "2023-09-16"
+    },
+    {
+      "isAttendance" : false,
+      "completeClass": 0,
+      "date" : "2023-09-17"
+    }
+  ]
+}

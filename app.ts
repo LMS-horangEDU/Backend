@@ -34,7 +34,7 @@ app.use(koaBody());
 app.use(errorHandler);
 
 app.use(healthChcekRouter.routes()).use(healthChcekRouter.prefix('/health-check').allowedMethods());
-app.use(infoRouter.routes()).use(infoRouter.prefix('/info').allowedMethods());
+app.use(infoRouter.routes()).use(infoRouter.allowedMethods());
 
 app.on('error', (err: any, ctx: Context) => {
   console.log(ctx.request.path);
