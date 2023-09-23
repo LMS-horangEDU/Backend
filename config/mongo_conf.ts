@@ -1,10 +1,16 @@
 import { MongoClient } from 'mongodb';
 
-const { MONGODB_URI, NODE_ENV, MONGO_INITDB_ROOT_PASSWORD, MONGO_INITDB_ROOT_USERNAME } = process.env;
+const {
+  MONGODB_URI,
+  NODE_ENV,
+  MONGO_INITDB_ROOT_PASSWORD,
+  MONGO_INITDB_ROOT_USERNAME,
+  MONGO_INTERNALIP,
+} = process.env;
 
 const client = new MongoClient(NODE_ENV === 'development'
   ? MONGODB_URI:
-  `mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@mongodb-sts-vol-0`
+  `mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@${MONGO_INTERNALIP}`
 );
 
 export default async function run () {
