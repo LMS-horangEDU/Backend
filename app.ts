@@ -1,19 +1,19 @@
 import dotenv from 'dotenv';
 import path from 'path';
 
-dotenv.config();
-// // NODE_ENV 에 맞게 env 파일 설정.
-// if (process.env.NODE_ENV === 'production') {
-//   console.log(process.env.NODE_ENV);
-//   dotenv.config({ path : path.join(__dirname, '/.env') });
-// } else if (process.env.NODE_ENV === 'development') {
-//   console.log(process.env.NODE_ENV);
-//   dotenv.config({ path : path.join(__dirname, '/.env.local') });
-// } else {
-//   console.error('Not defined process.env.NODE_ENV');
-//   throw new Error('Not defined process.env.NODE_ENV');
-// }
+// NODE_ENV 에 맞게 env 파일 설정.
+if (process.env.NODE_ENV === 'production') {
+  console.log(process.env.NODE_ENV);
+  dotenv.config({ path : path.join(__dirname, '/.env') });
+} else if (process.env.NODE_ENV === 'development') {
+  console.log(process.env.NODE_ENV);
+  dotenv.config({ path : path.join(__dirname, '/.env.local') });
+} else {
+  console.error('Not defined process.env.NODE_ENV');
+  throw new Error('Not defined process.env.NODE_ENV');
+}
 
+const { PORT } = process.env;
 import Koa, { Context } from 'koa';
 import { koaBody } from 'koa-body';
 import cors from '@koa/cors';
@@ -42,8 +42,8 @@ app.on('error', (err: any, ctx: Context) => {
   console.error(err);
 });
 
-app.listen(9000, async () => {
+app.listen(PORT, async () => {
   // mongoDB connection.
   await mongodbConnect();
-  console.log(`Server is running on port 9000`);
+  console.log(`Server is running on port ${PORT}`);
 });
