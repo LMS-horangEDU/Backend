@@ -18,20 +18,23 @@ jobs:
         with:
           node-version: 16.0.0
 
-      - name: Build Docker Image
+      - name: Login to AWS ECR
         run: |
-          docker build -t horang-registry.kr.ncr.ntruss.com/lms-horang-backend:latest .
-
-      - name: Login to Docker Hub
+          aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin 844148244640.dkr.ecr.ap-northeast-2.amazonaws.com
         env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        run: |
-          echo "$DOCKER_PASSWORD" | docker login horang-registry.kr.ncr.ntruss.com -u "$DOCKER_USERNAME" --password-stdin
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ap-northeast-2
 
-      - name: Push Docker Image
+      - name: Build and Push Docker Image
         run: |
-          docker push horang-registry.kr.ncr.ntruss.com/lms-horang-backend:latest
+          docker build -t 844148244640.dkr.ecr.ap-northeast-2.amazonaws.com/lms-horang-backend:latest .
+          docker tag 844148244640.dkr.ecr.ap-northeast-2.amazonaws.com/lms-horang-backend:latest
+          docker push 844148244640.dkr.ecr.ap-northeast-2.amazonaws.com/844148244640.dkr.ecr.ap-northeast-2.amazonaws.com/lms-horang-backend:latest
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ap-northeast-2
 
       - name: Logout from Docker Hub
         run: |
